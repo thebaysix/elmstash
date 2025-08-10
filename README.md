@@ -20,7 +20,7 @@ Provide tooling and instrumentation **with a safety focus** for fine-tuned langu
 
 ```bash
 # Activate environment
-venv\Scripts\activate  # (on Windows)
+.\.venv_elm\Scripts\activate  # (on Windows)
 
 # Start Jupyter Lab
 jupyter lab
