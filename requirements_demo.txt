@@ -1,0 +1,8 @@
+# Demo UI Requirements
+# Core requirements from main project
+-r requirements.txt
+
+# Additional demo UI dependencies
+streamlit>=1.28.0
+plotly>=5.15.0
+pandas>=2.0.0

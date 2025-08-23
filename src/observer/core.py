@@ -8,6 +8,8 @@ and calculates objective metrics without making judgments about quality.
 import sqlite3
 from typing import Dict, List, Any, Optional
 from datetime import datetime
+import threading
+import os
 
 from .logging.logger import init_db, log_interaction
 from .metrics.entropy import calc_entropy, calc_character_entropy, calc_response_entropy
@@ -31,26 +33,34 @@ class ModelObserver:
             db_path: Path to SQLite database for storing observations
         """
         self.db_path = db_path
+        self._local = threading.local()
         
         # Initialize database with custom path
-        import os
         os.makedirs(os.path.dirname(db_path) if os.path.dirname(db_path) else ".", exist_ok=True)
-        self.conn = sqlite3.connect(db_path)
-        cursor = self.conn.cursor()
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS interactions (
-                session_id TEXT,
-                step INTEGER,
-                timestamp TEXT,
-                input TEXT,
-                action TEXT,
-                output TEXT,
-                metadata TEXT
-            )
-        ''')
-        self.conn.commit()
+        
+        # Initialize the database schema (using a temporary connection)
+        with sqlite3.connect(db_path) as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS interactions (
+                    session_id TEXT,
+                    step INTEGER,
+                    timestamp TEXT,
+                    input TEXT,
+                    action TEXT,
+                    output TEXT,
+                    metadata TEXT
+                )
+            ''')
+            conn.commit()
         
         self.pattern_analyzer = PatternAnalyzer()
+    
+    def _get_connection(self):
+        """Get a thread-local database connection."""
+        if not hasattr(self._local, 'conn'):
+            self._local.conn = sqlite3.connect(self.db_path)
+        return self._local.conn
     
     def record_interaction(
         self,
@@ -72,7 +82,8 @@ class ModelObserver:
             action: Action type (default: "query")
             metadata: Additional metadata
         """
-        cursor = self.conn.cursor()
+        conn = self._get_connection()
+        cursor = conn.cursor()
         timestamp = datetime.now().isoformat()
         
         import json
@@ -82,7 +93,7 @@ class ModelObserver:
             INSERT INTO interactions (session_id, step, timestamp, input, action, output, metadata)
             VALUES (?, ?, ?, ?, ?, ?, ?)
         ''', (session_id, step, timestamp, input_str, action, output_str, meta_json))
-        self.conn.commit()
+        conn.commit()
     
     def get_session_data(self, session_id: str) -> List[Dict[str, Any]]:
         """
@@ -94,7 +105,8 @@ class ModelObserver:
         Returns:
             List of interaction dictionaries
         """
-        cursor = self.conn.cursor()
+        conn = self._get_connection()
+        cursor = conn.cursor()
         cursor.execute('''
         SELECT session_id, step, input, action, output, metadata, timestamp
         FROM interactions 
@@ -195,7 +207,8 @@ class ModelObserver:
         Returns:
             List of session IDs
         """
-        cursor = self.conn.cursor()
+        conn = self._get_connection()
+        cursor = conn.cursor()
         cursor.execute('SELECT DISTINCT session_id FROM interactions ORDER BY session_id')
         rows = cursor.fetchall()
         return [row[0] for row in rows]
@@ -232,8 +245,9 @@ class ModelObserver:
     
     def close(self):
         """Close the database connection."""
-        if self.conn:
-            self.conn.close()
+        if hasattr(self._local, 'conn'):
+            self._local.conn.close()
+            delattr(self._local, 'conn')
     
     # Private helper methods
     
