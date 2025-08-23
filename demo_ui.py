@@ -82,9 +82,9 @@ st.markdown("""
 **Demonstrating the separation of Observation (what happened) from Evaluation (how good was it)**
 
 This dashboard showcases our three-layer architecture:
-- 🟢 **Observer**: Objective measurements and pattern detection
-- 🟠 **Evaluator**: Subjective quality judgments and assessments  
-- 🔴 **Integration**: Combined insights and comprehensive reports
+- **Observer**: Diagnostic measurements and pattern detection
+- **Evaluator**: Subjective quality judgments and assessments  
+- **Insights**: Comprehensive reports
 """)
 
 # Sidebar Configuration
@@ -169,13 +169,13 @@ with st.sidebar:
 # Main Content Area
 if demo_mode == "Architecture Demo":
     # Architecture demonstration
-    st.header("🏗️ Clean Separation Architecture")
+    st.header("🏗️ Elmstash Architecture")
     
     col1, col2, col3 = st.columns(3)
     
     with col1:
         st.markdown('<div class="observer-section">', unsafe_allow_html=True)
-        st.subheader("🟢 Observer")
+        st.subheader("👁️ Observer")
         st.markdown("**Objective Measurements**")
         st.markdown("""
         - Records what happened
@@ -194,7 +194,7 @@ metrics = observer.calculate_metrics(data)
     
     with col2:
         st.markdown('<div class="evaluator-section">', unsafe_allow_html=True)
-        st.subheader("🟠 Evaluator")
+        st.subheader("⚖️ Evaluator")
         st.markdown("**Subjective Assessments**")
         st.markdown("""
         - Makes quality judgments
@@ -213,7 +213,7 @@ assessment = evaluator.evaluate(observed_data)
     
     with col3:
         st.markdown('<div class="integration-section">', unsafe_allow_html=True)
-        st.subheader("🔴 Integration")
+        st.subheader("💡 Insights")
         st.markdown("**Combined Insights**")
         st.markdown("""
         - Orchestrates workflows
@@ -308,16 +308,16 @@ elif demo_mode == "Single Analysis" and st.session_state.get('run_analysis', Fal
     
     # Create tabs for different views
     tab1, tab2, tab3, tab4 = st.tabs([
-        "🟢 Observer (Objective)", 
-        "🟠 Evaluator (Subjective)", 
-        "🔴 Integration (Combined)",
+        "👁️ Observer", 
+        "⚖️ Evaluator", 
+        "💡 Insights",
         "📊 Visualizations"
     ])
     
     with tab1:
         st.markdown('<div class="observer-section">', unsafe_allow_html=True)
-        st.subheader("🟢 Observer: Objective Measurements")
-        st.caption("What happened? (No quality judgments)")
+        st.subheader("👁️ Observer")
+        st.caption("What happened?")
         
         # Metrics cards
         col1, col2, col3, col4 = st.columns(4)
@@ -375,8 +375,8 @@ elif demo_mode == "Single Analysis" and st.session_state.get('run_analysis', Fal
     
     with tab2:
         st.markdown('<div class="evaluator-section">', unsafe_allow_html=True)
-        st.subheader("🟠 Evaluator: Subjective Assessments")
-        st.caption("How good was it? (Quality judgments)")
+        st.subheader("⚖️ Evaluator")
+        st.caption("How good was it?")
         
         # Capability scores
         col1, col2 = st.columns(2)
@@ -457,8 +457,8 @@ elif demo_mode == "Single Analysis" and st.session_state.get('run_analysis', Fal
     
     with tab3:
         st.markdown('<div class="integration-section">', unsafe_allow_html=True)
-        st.subheader("🔴 Integration: Combined Insights")
-        st.caption("Comprehensive analysis combining observation and evaluation")
+        st.subheader("💡 Insights")
+        st.caption("Comprehensive analysis")
         
         # Pipeline results summary
         if pipeline_results:
@@ -962,7 +962,7 @@ st.divider()
 st.markdown("""
 <div style='text-align: center; color: #666;'>
     <p>🔍 <strong>Elmstash Demo</strong> - Clean Separation Architecture</p>
-    <p>Observer (Objective) • Evaluator (Subjective) • Integration (Combined)</p>
+    <p>Observer • Evaluator • Insights</p>
 </div>
 """, unsafe_allow_html=True)
 

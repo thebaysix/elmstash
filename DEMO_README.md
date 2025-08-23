@@ -72,18 +72,18 @@ pip install streamlit plotly pandas
 ### Three-Layer Display
 Each analysis shows results from all three architectural layers:
 
-1. **🟢 Observer Tab**: Pure objective measurements
+1. **👁️ Observer Tab**: Pure objective measurements
    - Response entropy, token counts, length statistics
    - Pattern detection results
    - No quality judgments
 
-2. **🟠 Evaluator Tab**: Subjective quality assessments
+2. **⚖️ Evaluator Tab**: Subjective quality assessments
    - Task completion scores
    - Instruction following ratings
    - Safety assessments
    - Overall quality ratings
 
-3. **🔴 Integration Tab**: Combined insights
+3. **💡 Integration Tab**: Combined insights
    - Comprehensive analysis results
    - Actionable recommendations
    - Integrated reporting
