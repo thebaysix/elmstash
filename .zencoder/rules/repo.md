@@ -9,9 +9,11 @@ alwaysApply: true
 Elmstash (Exercising Language Models So They Are Safe & Humane) is a Python project focused on providing tooling and instrumentation for fine-tuned language models with a safety focus. It includes components for evaluation, observability, debugging, quality assurance, drift detection, compliance/auditing, and reproducibility.
 
 ## Structure
-The repository is organized into two main components:
+The repository is organized into several main components:
 - **src/observer**: Provides monitoring and logging capabilities for LLM interactions
-- **src/eval**: Implements evaluation metrics and testing frameworks for LLMs
+- **src/evaluator**: Makes judgments about model performance based on observed data
+- **src/eval**: Implements evaluation metrics using inspect-ai framework
+- **src/integration**: Orchestrates observation and evaluation workflows
 - **notebooks**: Contains Jupyter notebooks for development and demonstrations
 - **data**: Stores SQLite databases for logging model interactions
 
@@ -48,7 +50,7 @@ jupyter lab
 ## Projects
 
 ### Observer Component
-**Configuration File**: src/observer/logging/logger.py
+**Configuration File**: src/observer/core.py
 
 #### Main Features
 - **Model Interface**: Wrapper for OpenAI/Anthropic APIs (src/observer/agent/model_interface.py)
@@ -58,20 +60,48 @@ jupyter lab
 
 #### Usage
 ```python
-# Initialize database
-from observer.logging.logger import init_db, log_interaction
-conn = init_db()
+# Initialize observer
+from observer.core import ModelObserver
+observer = ModelObserver("data/sessions.sqlite")
 
-# Query model
-from observer.agent.model_interface import query_model
-response = query_model("Your prompt here", model="gpt-4o-mini")
+# Record interaction
+observer.record_interaction(
+    session_id="demo", 
+    step=1, 
+    input_str="What is AI?", 
+    output_str="AI is artificial intelligence..."
+)
 
 # Calculate metrics
-from observer.metrics.entropy import calc_entropy
-entropy = calc_entropy(response)
+metrics = observer.calculate_metrics(interactions)
+patterns = observer.analyze_patterns(interactions)
+```
 
-# Log interaction
-log_interaction(conn, session_id, step, input_str, action, output_str, metadata)
+### Evaluator Component
+**Configuration File**: src/evaluator/core.py
+
+#### Main Features
+- **Capability Evaluation**: Assesses task completion, accuracy, reasoning (src/evaluator/capabilities/)
+- **Alignment Evaluation**: Evaluates instruction following, safety (src/evaluator/alignment/)
+- **Comparative Evaluation**: Compares performance between models (src/evaluator/comparative/)
+
+#### Usage
+```python
+# Initialize evaluator
+from evaluator.core import ModelEvaluator
+evaluator = ModelEvaluator()
+
+# Prepare observed data
+observed_data = {
+    'interactions': interactions,
+    'metrics': metrics,
+    'patterns': patterns
+}
+
+# Evaluate model
+capabilities = evaluator.evaluate_capabilities(observed_data)
+alignment = evaluator.evaluate_alignment(observed_data)
+results = evaluator.evaluate_comprehensive(observed_data)
 ```
 
 ### Eval Component
@@ -109,6 +139,27 @@ def simple_eval():
 
 # Run evaluation
 eval(simple_eval(), model="gpt-3.5-turbo")
+```
+
+### Integration Component
+**Configuration File**: src/integration/__init__.py
+
+#### Main Features
+- **Pipelines**: Orchestrates observation and evaluation workflows (src/integration/pipelines/)
+- **Reports**: Generates comprehensive reports from analysis results (src/integration/reports/)
+
+#### Usage
+```python
+# Initialize pipeline
+from integration.pipelines import EvaluationPipeline
+pipeline = EvaluationPipeline()
+
+# Run complete analysis
+results = pipeline.run_full_analysis("session_123")
+
+# Generate report
+from integration.reports import ReportGenerator
+report = ReportGenerator().generate_report(results)
 ```
 
 ## Testing
