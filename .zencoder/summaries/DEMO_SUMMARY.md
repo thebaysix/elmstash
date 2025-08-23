@@ -5,7 +5,7 @@
 ### 🏗️ Clean Separation Architecture
 - **Observer**: Diagnostic measurements (entropy, lengths, patterns)
 - **Evaluator**: Quality assessments (quality, safety, task completion)  
-- **Integration**: Comprehensive reports
+- **Insights**: Comprehensive reports
 
 ### 🎨 Interactive Demo UI
 - **Streamlit dashboard** with multiple demo modes
@@ -62,7 +62,7 @@
 ### Core Demo (5-8 minutes)
 1. **Single Analysis**: 
    - Use medical example to show real-world relevance
-   - Walk through all three tabs (Observer → Evaluator → Integration)
+   - Walk through all three tabs (Observer → Evaluator → Insights)
    - Highlight how objective measurements inform subjective assessments
 
 2. **Batch Comparison**:
