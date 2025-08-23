@@ -83,12 +83,12 @@ Each analysis shows results from all three architectural layers:
    - Safety assessments
    - Overall quality ratings
 
-3. **💡 Integration Tab**: Combined insights
+3. **💡 Insights Tab**: Combined insights
    - Comprehensive analysis results
    - Actionable recommendations
    - Integrated reporting
 
-## 💡 Demo Script Ideas
+## 💭 Demo Script Ideas
 
 ### For Technical Audiences
 1. **Architecture Overview**: Start with "Architecture Demo" to explain the separation
