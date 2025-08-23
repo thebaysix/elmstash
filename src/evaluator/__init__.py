@@ -1,5 +1,5 @@
 """
-Evaluator Module - Judgment and assessment of model performance.
+Evaluate Module - Judgment and assessment of model performance.
 
 This module provides evaluation capabilities that make judgments about
 model performance based on observed data.

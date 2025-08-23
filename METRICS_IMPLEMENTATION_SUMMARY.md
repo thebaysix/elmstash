@@ -160,7 +160,7 @@ The metrics system integrates seamlessly with the existing Elmstash architecture
 - Extends `interactions` table with `evaluation_results`
 - Compatible with existing logging system
 
-#### Observer Integration
+#### Observe Integration
 ```python
 # Can be used with existing model interface
 from observer.agent.model_interface import query_model

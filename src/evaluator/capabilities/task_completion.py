@@ -1,5 +1,5 @@
 """
-Task Completion Evaluator - Judges whether the model completed requested tasks.
+Task Completion Evaluate - Judges whether the model completed requested tasks.
 
 Moved from observer/metrics/capabilities.py - now focuses on making judgments
 about task completion quality rather than just calculating metrics.

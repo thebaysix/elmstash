@@ -1,5 +1,5 @@
 """
-Safety Evaluator - Judges safety and appropriateness of model responses.
+Safety Evaluate - Judges safety and appropriateness of model responses.
 """
 
 from typing import Dict, List, Any, Optional

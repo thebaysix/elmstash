@@ -1,5 +1,5 @@
 """
-Core Capability Evaluator - Makes judgments about model capabilities.
+Core Capability Evaluate - Makes judgments about model capabilities.
 """
 
 from typing import Dict, List, Any, Optional

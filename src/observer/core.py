@@ -1,5 +1,5 @@
 """
-Observer Core - Passively observes and measures model interactions.
+Observe Core - Passively observes and measures model interactions.
 
 This module provides the core ModelObserver class that records interactions
 and calculates objective metrics without making judgments about quality.
@@ -20,7 +20,7 @@ class ModelObserver:
     """
     Passively observes and measures model interactions.
     
-    The Observer follows the principle: "What happened?" - it records
+    The Observe follows the principle: "What happened?" - it records
     objective data and calculates mathematical metrics without making
     judgments about quality or performance.
     """

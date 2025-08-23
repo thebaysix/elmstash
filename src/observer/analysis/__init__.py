@@ -1,5 +1,5 @@
 """
-Observer Analysis Module
+Observe Analysis Module
 
 Statistical analysis of observed model interaction data.
 Focuses on objective pattern detection and statistical measures.

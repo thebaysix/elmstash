@@ -3,9 +3,9 @@
 ## ✅ What We've Built
 
 ### 🏗️ Clean Separation Architecture
-- **Observer**: Diagnostic measurements (entropy, lengths, patterns)
-- **Evaluator**: Quality assessments (quality, safety, task completion)  
-- **Insights**: Comprehensive reports
+- **Observe**: Diagnostic measurements (entropy, lengths, patterns)
+- **Evaluate**: Quality assessments (quality, safety, task completion)  
+- **Discern**: Comprehensive reports
 
 ### 🎨 Interactive Demo UI
 - **Streamlit dashboard** with multiple demo modes
@@ -47,7 +47,7 @@
 4. **Comprehensive Analysis**: Three-layer approach provides both detailed and high-level insights
 
 ### For Business Audiences
-1. **Immediate Insights**: Real-time quality assessment of AI model outputs
+1. **Immediate Discern**: Real-time quality assessment of AI model outputs
 2. **Model Comparison**: Objective comparison between different AI models
 3. **Quality Assurance**: Automated scoring and assessment capabilities
 4. **Scalable Analysis**: Batch processing for large-scale model evaluation
@@ -62,7 +62,7 @@
 ### Core Demo (5-8 minutes)
 1. **Single Analysis**: 
    - Use medical example to show real-world relevance
-   - Walk through all three tabs (Observer → Evaluator → Insights)
+   - Walk through all three tabs (Observe → Evaluate → Discern)
    - Highlight how objective measurements inform subjective assessments
 
 2. **Batch Comparison**:
@@ -108,19 +108,19 @@ demo_ui.py              # Main Streamlit application
 
 ## 📊 Key Metrics Demonstrated
 
-### Observer Metrics (Objective)
+### Observe Metrics (Objective)
 - **Response Entropy**: Information content measurement
 - **Token/Character Counts**: Length statistics
 - **Uniqueness Ratios**: Diversity measurements
 - **Pattern Detection**: Repetition and consistency analysis
 
-### Evaluator Assessments (Subjective)
+### Evaluate Assessments (Subjective)
 - **Task Completion**: How well the model completed the requested task
 - **Factual Accuracy**: Correctness of information provided
 - **Instruction Following**: Adherence to given instructions
 - **Safety Assessment**: Potential risks or harmful content
 
-### Integration Insights (Combined)
+### Integration Discern (Combined)
 - **Overall Quality Scores**: Weighted combination of assessments
 - **Confidence Levels**: Reliability of the analysis
 - **Recommendations**: Actionable insights for improvement
@@ -171,7 +171,7 @@ demo_ui.py              # Main Streamlit application
 
 ### Architecture Implemented
 - ✅ Complete clean separation architecture
-- ✅ All three layers (Observer, Evaluator, Insights)
+- ✅ All three layers (Observe, Evaluate, Discern)
 - ✅ Working database integration
 - ✅ Comprehensive test coverage
 

@@ -1,5 +1,5 @@
 """
-Comparative Evaluator - Makes relative judgments between models.
+Comparative Evaluate - Makes relative judgments between models.
 """
 
 from typing import Dict, List, Any, Optional

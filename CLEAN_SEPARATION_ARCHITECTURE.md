@@ -6,8 +6,8 @@ This document describes the clean separation architecture implemented in Elmstas
 
 ## Core Principle
 
-**Observer = "What happened?"** (passive data collection and basic metrics)  
-**Evaluator = "How good was it?"** (active judgment and assessment)
+**Observe = "What happened?"** (passive data collection and basic metrics)  
+**Evaluate = "How good was it?"** (active judgment and assessment)
 
 ## Architecture Structure
 
@@ -30,7 +30,7 @@ src/
 
 ## Key Components
 
-### Observer (Objective)
+### Observe (Objective)
 
 **Purpose**: Records what happened without making judgments about quality.
 
@@ -64,7 +64,7 @@ patterns = observer.analyze_patterns(interactions)
 # Returns: repetition patterns, consistency measures, etc.
 ```
 
-### Evaluator (Subjective)
+### Evaluate (Subjective)
 
 **Purpose**: Makes judgments about model performance based on observed data.
 
@@ -125,10 +125,10 @@ evaluations = pipeline.run_evaluation_only(observed_data)
 
 ### 1. Observation Phase (Objective)
 ```
-Raw Interactions → Observer → Objective Metrics + Patterns
+Raw Interactions → Observe → Objective Metrics + Patterns
 ```
 
-**Observer Output**:
+**Observe Output**:
 ```python
 {
     'interactions': [...],
@@ -147,10 +147,10 @@ Raw Interactions → Observer → Objective Metrics + Patterns
 
 ### 2. Evaluation Phase (Subjective)
 ```
-Observed Data → Evaluator → Quality Judgments + Recommendations
+Observed Data → Evaluate → Quality Judgments + Recommendations
 ```
 
-**Evaluator Output**:
+**Evaluate Output**:
 ```python
 {
     'capabilities': {
@@ -177,12 +177,12 @@ Observed Data + Evaluation Results → Pipeline → Comprehensive Report
 ## Benefits of Clean Separation
 
 ### 1. Clear Responsibilities
-- **Observer**: "The model generated 150 tokens with entropy 3.2"
-- **Evaluator**: "This response quality is 'good' based on task requirements"
+- **Observe**: "The model generated 150 tokens with entropy 3.2"
+- **Evaluate**: "This response quality is 'good' based on task requirements"
 
 ### 2. Testability
-- Observer logic is deterministic and easily unit tested
-- Evaluator logic can be tested against known good/bad examples
+- Observe logic is deterministic and easily unit tested
+- Evaluate logic can be tested against known good/bad examples
 - Components can be tested independently
 
 ### 3. Extensibility
@@ -216,7 +216,7 @@ observer = ModelObserver("data/sessions.sqlite")
 evaluator = ModelEvaluator()
 pipeline = EvaluationPipeline()
 
-# 2. Record interactions (Observer)
+# 2. Record interactions (Observe)
 observer.record_interaction("demo", 1, "What is ML?", "Machine learning is...")
 observer.record_interaction("demo", 2, "Explain neural networks", "Neural networks are...")
 
@@ -238,13 +238,13 @@ report = pipeline.run_full_analysis("demo")
 
 The test script demonstrates:
 
-✅ **Observer (Objective)**:
+✅ **Observe (Objective)**:
 - Records what happened
 - Calculates mathematical metrics
 - Detects statistical patterns
 - No judgments about quality
 
-✅ **Evaluator (Subjective)**:
+✅ **Evaluate (Subjective)**:
 - Makes quality judgments
 - Assesses performance levels
 - Provides recommendations
@@ -258,7 +258,7 @@ The test script demonstrates:
 
 ✅ **Flexibility**:
 - Same observed data can be used with different evaluators
-- Observer data is reusable across different evaluation strategies
+- Observe data is reusable across different evaluation strategies
 - Evaluators can be swapped without changing observation logic
 
 ## Future Extensions

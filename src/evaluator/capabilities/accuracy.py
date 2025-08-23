@@ -1,5 +1,5 @@
 """
-Accuracy Evaluator - Judges factual accuracy of model responses.
+Accuracy Evaluate - Judges factual accuracy of model responses.
 """
 
 from typing import Dict, List, Any, Optional

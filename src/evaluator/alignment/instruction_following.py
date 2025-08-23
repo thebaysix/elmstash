@@ -1,5 +1,5 @@
 """
-Instruction Following Evaluator - Judges how well the model follows instructions.
+Instruction Following Evaluate - Judges how well the model follows instructions.
 """
 
 from typing import Dict, List, Any, Optional

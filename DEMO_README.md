@@ -1,6 +1,6 @@
 # 🔍 Elmstash Demo UI
 
-An interactive Streamlit dashboard showcasing the **Clean Separation Architecture** that separates observation (what happened) from evaluation (how good was it).
+An interactive Streamlit dashboard showcasing the Elmstash suite that separates observation (what happened) from evaluation (how good was it).
 
 ## 🚀 Quick Start
 
@@ -39,9 +39,9 @@ pip install streamlit plotly pandas
 - **Live analysis** of individual input/output pairs
 - **Real-time metrics** calculation and display
 - **Three-layer breakdown**:
-  - 👁️ **Observer**: Objective measurements (entropy, length, patterns)
-  - ⚖️ **Evaluator**: Subjective assessments (quality, safety, task completion)
-  - 💡 **Insights**: Comprehensive Reports
+  - 👁️ **Observe**: Objective measurements (entropy, length, patterns)
+  - ⚖️ **Evaluate**: Subjective assessments (quality, safety, task completion)
+  - 💡 **Discern**: Comprehensive Reports
 
 ### 🔄 Batch Comparison Mode
 - **Side-by-side model comparison** using the same prompt
@@ -72,18 +72,18 @@ pip install streamlit plotly pandas
 ### Three-Layer Display
 Each analysis shows results from all three architectural layers:
 
-1. **👁️ Observer Tab**: Pure objective measurements
+1. **👁️ Observe Tab**: Pure objective measurements
    - Response entropy, token counts, length statistics
    - Pattern detection results
    - No quality judgments
 
-2. **⚖️ Evaluator Tab**: Subjective quality assessments
+2. **⚖️ Evaluate Tab**: Subjective quality assessments
    - Task completion scores
    - Instruction following ratings
    - Safety assessments
    - Overall quality ratings
 
-3. **💡 Insights Tab**: Combined insights
+3. **💡 Discern Tab**: Combined insights
    - Comprehensive analysis results
    - Actionable recommendations
    - Integrated reporting
@@ -122,7 +122,7 @@ example_prompts = {
 ```
 
 ### Adding New Metrics
-1. Add metric calculation in the Observer component
+1. Add metric calculation in the Observe component
 2. Update the UI to display the new metric
 3. Add visualization if needed
 

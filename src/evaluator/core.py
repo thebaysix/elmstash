@@ -1,5 +1,5 @@
 """
-Evaluator Core - Makes judgments about model performance.
+Evaluate Core - Makes judgments about model performance.
 
 This module provides the core ModelEvaluator class that makes judgments
 about model quality and performance based on observed data.
@@ -15,7 +15,7 @@ class ModelEvaluator:
     """
     Makes judgments about model performance.
     
-    The Evaluator follows the principle: "How good was it?" - it makes
+    The Evaluate follows the principle: "How good was it?" - it makes
     qualitative judgments about model performance based on observed data.
     """
     

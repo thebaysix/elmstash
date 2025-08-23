@@ -49,7 +49,7 @@ jupyter lab
 
 ## Projects
 
-### Observer Component
+### Observe Component
 **Configuration File**: src/observer/core.py
 
 #### Main Features
@@ -77,7 +77,7 @@ metrics = observer.calculate_metrics(interactions)
 patterns = observer.analyze_patterns(interactions)
 ```
 
-### Evaluator Component
+### Evaluate Component
 **Configuration File**: src/evaluator/core.py
 
 #### Main Features

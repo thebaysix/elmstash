@@ -1,5 +1,5 @@
 """
-Reasoning Evaluator - Judges quality of logical reasoning in responses.
+Reasoning Evaluate - Judges quality of logical reasoning in responses.
 """
 
 from typing import Dict, List, Any, Optional

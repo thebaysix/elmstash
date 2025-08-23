@@ -15,8 +15,8 @@ def test_demo_components():
     print("=" * 40)
     
     try:
-        # Test Observer
-        print("Testing Observer...")
+        # Test Observe
+        print("Testing Observe...")
         from observer.core import ModelObserver
         from observer.metrics.entropy import calc_entropy
         
@@ -26,10 +26,10 @@ def test_demo_components():
         interactions = observer.get_session_data("test")
         metrics = observer.calculate_metrics(interactions)
         
-        print(f"✅ Observer: {len(interactions)} interactions, entropy: {metrics.get('response_entropy', 0):.3f}")
+        print(f"✅ Observe: {len(interactions)} interactions, entropy: {metrics.get('response_entropy', 0):.3f}")
         
-        # Test Evaluator
-        print("Testing Evaluator...")
+        # Test Evaluate
+        print("Testing Evaluate...")
         from evaluator.core import ModelEvaluator
         
         evaluator = ModelEvaluator()
@@ -38,7 +38,7 @@ def test_demo_components():
         capabilities = evaluator.evaluate_capabilities(observed_data)
         alignment = evaluator.evaluate_alignment(observed_data)
         
-        print(f"✅ Evaluator: {len(capabilities)} capabilities, {len(alignment)} alignment aspects")
+        print(f"✅ Evaluate: {len(capabilities)} capabilities, {len(alignment)} alignment aspects")
         
         # Test Integration
         print("Testing Integration...")

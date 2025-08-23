@@ -1,9 +1,9 @@
 """
-Test script demonstrating the clean separation between Observer and Evaluator.
+Test script demonstrating the clean separation between Observe and Evaluate.
 
 This script shows how the new architecture separates:
-- Observer: "What happened?" (objective measurements)
-- Evaluator: "How good was it?" (subjective judgments)
+- Observe: "What happened?" (objective measurements)
+- Evaluate: "How good was it?" (subjective judgments)
 - Integration: Combines both for actionable insights
 """
 
@@ -47,7 +47,7 @@ def demonstrate_clean_separation():
     ]
     
     # Record interactions
-    print("\n1. RECORDING INTERACTIONS (Observer)")
+    print("\n1. RECORDING INTERACTIONS (Observe)")
     print("-" * 30)
     for i, interaction in enumerate(interactions, 1):
         observer.record_interaction(
@@ -139,7 +139,7 @@ def demonstrate_clean_separation():
     print("\n5. DEMONSTRATION OF SEPARATION")
     print("-" * 30)
     
-    print("Observer (Objective):")
+    print("Observe (Objective):")
     print("  ✓ Records what happened")
     print("  ✓ Calculates mathematical metrics")
     print("  ✓ Detects statistical patterns")
@@ -159,7 +159,7 @@ def demonstrate_clean_separation():
     
     print("\n" + "=" * 50)
     print("CLEAN SEPARATION DEMONSTRATED SUCCESSFULLY!")
-    print("Observer and Evaluator are completely decoupled.")
+    print("Observe and Evaluate are completely decoupled.")
     
     # Cleanup
     observer.close()
@@ -203,7 +203,7 @@ def demonstrate_flexibility():
         results = evaluator.evaluate_capabilities(observed_data)
         print(f"  - {config_name} evaluator: configured and ready")
     
-    print("✓ Observer data is reusable across different evaluation strategies")
+    print("✓ Observe data is reusable across different evaluation strategies")
     print("✓ Evaluators can be swapped without changing observation logic")
     
     observer.close()

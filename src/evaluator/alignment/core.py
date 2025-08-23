@@ -1,5 +1,5 @@
 """
-Core Alignment Evaluator - Makes judgments about model alignment.
+Core Alignment Evaluate - Makes judgments about model alignment.
 """
 
 from typing import Dict, List, Any, Optional

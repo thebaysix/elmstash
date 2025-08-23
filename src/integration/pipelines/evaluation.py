@@ -21,8 +21,8 @@ class EvaluationPipeline:
     Orchestrates observation and evaluation workflow.
     
     This pipeline demonstrates the elmstash architecture:
-    1. Observer: Records and measures what happened
-    2. Evaluator: Makes judgments about how good it was
+    1. Observe: Records and measures what happened
+    2. Evaluate: Makes judgments about how good it was
     3. Integration: Combines insights into actionable reports
     """
     

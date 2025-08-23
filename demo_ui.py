@@ -2,8 +2,8 @@
 Elmstash Demo UI - Interactive dashboard showcasing the clean separation architecture.
 
 This Streamlit app demonstrates:
-1. Observer metrics (objective measurements)
-2. Evaluator judgments (subjective assessments)
+1. Observe metrics (objective measurements)
+2. Evaluate judgments (subjective assessments)
 3. Integration pipelines (combined insights)
 """
 
@@ -29,8 +29,8 @@ from observer.metrics.entropy import calc_entropy
 
 # Demo UI Configuration
 st.set_page_config(
-    page_title="Elmstash Demo - Clean Separation Architecture",
-    page_icon="🔍",
+    page_title="Elmstash Demo",
+    page_icon="🌳",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -77,15 +77,7 @@ def get_pipeline():
     return EvaluationPipeline()
 
 # Header
-st.title("🔍 Elmstash Demo: Clean Separation Architecture")
-st.markdown("""
-**Demonstrating the separation of Observation (what happened) from Evaluation (how good was it)**
-
-This dashboard showcases our three-layer architecture:
-- **Observer**: Diagnostic measurements and pattern detection
-- **Evaluator**: Subjective quality judgments and assessments  
-- **Insights**: Comprehensive reports
-""")
+st.title("🌳 Elmstash Demo")
 
 # Sidebar Configuration
 with st.sidebar:
@@ -175,7 +167,7 @@ if demo_mode == "Architecture Demo":
     
     with col1:
         st.markdown('<div class="observer-section">', unsafe_allow_html=True)
-        st.subheader("👁️ Observer")
+        st.subheader("👁️ Observe")
         st.markdown("**Objective Measurements**")
         st.markdown("""
         - Records what happened
@@ -185,7 +177,7 @@ if demo_mode == "Architecture Demo":
         - No quality judgments
         """)
         st.code("""
-# Observer Example
+# Observe Example
 observer = ModelObserver()
 metrics = observer.calculate_metrics(data)
 # Returns: entropy, lengths, counts
@@ -194,7 +186,7 @@ metrics = observer.calculate_metrics(data)
     
     with col2:
         st.markdown('<div class="evaluator-section">', unsafe_allow_html=True)
-        st.subheader("⚖️ Evaluator")
+        st.subheader("⚖️ Evaluate")
         st.markdown("**Subjective Assessments**")
         st.markdown("""
         - Makes quality judgments
@@ -204,7 +196,7 @@ metrics = observer.calculate_metrics(data)
         - Uses observed data
         """)
         st.code("""
-# Evaluator Example
+# Evaluate Example
 evaluator = ModelEvaluator()
 assessment = evaluator.evaluate(observed_data)
 # Returns: scores, ratings, recommendations
@@ -213,8 +205,8 @@ assessment = evaluator.evaluate(observed_data)
     
     with col3:
         st.markdown('<div class="integration-section">', unsafe_allow_html=True)
-        st.subheader("💡 Insights")
-        st.markdown("**Combined Insights**")
+        st.subheader("💡 Discern")
+        st.markdown("**Combined Discern**")
         st.markdown("""
         - Orchestrates workflows
         - Generates reports
@@ -240,12 +232,12 @@ report = pipeline.run_full_analysis(session_id)
     with benefit_cols[0]:
         st.markdown("""
         **🎯 Clear Responsibilities**
-        - Observer: "Response has entropy 3.2"
-        - Evaluator: "Quality is 'good' for this task"
+        - Observe: "Response has entropy 3.2"
+        - Evaluate: "Quality is 'good' for this task"
         
         **🧪 Testability**
-        - Observer logic is deterministic
-        - Evaluator can be tested with known examples
+        - Observe logic is deterministic
+        - Evaluate can be tested with known examples
         - Components tested independently
         
         **🔧 Extensibility**
@@ -308,15 +300,15 @@ elif demo_mode == "Single Analysis" and st.session_state.get('run_analysis', Fal
     
     # Create tabs for different views
     tab1, tab2, tab3, tab4 = st.tabs([
-        "👁️ Observer", 
-        "⚖️ Evaluator", 
-        "💡 Insights",
+        "👁️ Observe", 
+        "⚖️ Evaluate", 
+        "💡 Discern",
         "📊 Visualizations"
     ])
     
     with tab1:
         st.markdown('<div class="observer-section">', unsafe_allow_html=True)
-        st.subheader("👁️ Observer")
+        st.subheader("👁️ Observe")
         st.caption("What happened?")
         
         # Metrics cards
@@ -351,7 +343,7 @@ elif demo_mode == "Single Analysis" and st.session_state.get('run_analysis', Fal
             )
         
         # Detailed metrics
-        st.subheader("Detailed Observer Metrics")
+        st.subheader("Detailed Observe Metrics")
         
         metrics_col1, metrics_col2 = st.columns(2)
         
@@ -375,7 +367,7 @@ elif demo_mode == "Single Analysis" and st.session_state.get('run_analysis', Fal
     
     with tab2:
         st.markdown('<div class="evaluator-section">', unsafe_allow_html=True)
-        st.subheader("⚖️ Evaluator")
+        st.subheader("⚖️ Evaluate")
         st.caption("How good was it?")
         
         # Capability scores
@@ -457,7 +449,7 @@ elif demo_mode == "Single Analysis" and st.session_state.get('run_analysis', Fal
     
     with tab3:
         st.markdown('<div class="integration-section">', unsafe_allow_html=True)
-        st.subheader("💡 Insights")
+        st.subheader("💡 Discern")
         st.caption("Comprehensive analysis")
         
         # Pipeline results summary
@@ -961,8 +953,8 @@ elif demo_mode == "Sample Dataset" and st.session_state.get('run_analysis', Fals
 st.divider()
 st.markdown("""
 <div style='text-align: center; color: #666;'>
-    <p>🔍 <strong>Elmstash Demo</strong> - Clean Separation Architecture</p>
-    <p>Observer • Evaluator • Insights</p>
+    <p>🔍 <strong>Elmstash Demo</strong></p>
+    <p>Observe • Evaluate • Discern</p>
 </div>
 """, unsafe_allow_html=True)
 

@@ -2,7 +2,7 @@ Here's the previous message formatted as a README, suitable for a solo project o
 
 ---
 
-# LLM Observer Tooling: Target Audience & Value Proposition
+# LLM Observe Tooling: Target Audience & Value Proposition
 
 ## Overview
 
@@ -60,7 +60,7 @@ This is a specific type of PEFT where early layers are frozen, and only later la
 **Why They're a Foundational Target:**
 Even if the model itself isn't fine-tuned, the *usage* of it demands critical tooling:
 
-* **Prompt Engineering Insights:** Logging prompts and responses to identify effective strategies and track changes.
+* **Prompt Engineering Discern:** Logging prompts and responses to identify effective strategies and track changes.
 * **Cost Monitoring (API Usage):** Tracking token usage and API calls for cost management.
 * **Hallucination & Safety:** Monitoring for harmful, biased, or nonsensical outputs.
 * **Latency & Reliability:** Tracking response times and error rates for user experience.

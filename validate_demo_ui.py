@@ -88,9 +88,9 @@ def validate_demo_ui():
         print(f"  • Response entropy: {entropy:.3f}")
         print(f"  • Character count: {char_count}")
         print(f"  • Token count: {token_count}")
-        print(f"  • Observer metrics: {len(observer_metrics)} metrics")
-        print(f"  • Evaluator capabilities: {len(evaluator_capabilities)} capabilities")
-        print(f"  • Evaluator alignment: {len(evaluator_alignment)} alignment aspects")
+        print(f"  • Observe metrics: {len(observer_metrics)} metrics")
+        print(f"  • Evaluate capabilities: {len(evaluator_capabilities)} capabilities")
+        print(f"  • Evaluate alignment: {len(evaluator_alignment)} alignment aspects")
         
         print("✅ Metrics calculations successful")
         
