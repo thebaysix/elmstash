@@ -63,6 +63,18 @@ st.markdown("""
 if 'analysis_results' not in st.session_state:
     st.session_state.analysis_results = None
 
+if 'dataset_results' not in st.session_state:
+    st.session_state.dataset_results = None
+
+if 'dataset_config' not in st.session_state:
+    st.session_state.dataset_config = None
+
+if 'run_analysis' not in st.session_state:
+    st.session_state.run_analysis = False
+
+if 'active_dataset_tab' not in st.session_state:
+    st.session_state.active_dataset_tab = "📋 Sample Details"
+
 # Create fresh instances for each session to avoid threading issues
 @st.cache_resource
 def get_observer():
@@ -89,6 +101,17 @@ with st.sidebar:
         ["Single Analysis", "Batch Comparison", "Sample Dataset", "Architecture Demo"],
         help="Choose how to demonstrate the system"
     )
+    
+    # Reset analysis state when demo mode changes away from Sample Dataset
+    if 'previous_demo_mode' not in st.session_state:
+        st.session_state.previous_demo_mode = demo_mode
+    
+    if st.session_state.previous_demo_mode != demo_mode:
+        if st.session_state.previous_demo_mode == "Sample Dataset":
+            st.session_state.run_analysis = False
+            st.session_state.dataset_results = None
+            st.session_state.dataset_config = None
+        st.session_state.previous_demo_mode = demo_mode
     
     st.divider()
     
@@ -152,6 +175,8 @@ with st.sidebar:
             "Analysis Focus",
             ["Response Quality", "Safety Assessment", "Consistency Analysis"]
         )
+        
+
     
     # Analysis trigger
     st.divider()
@@ -759,98 +784,159 @@ elif demo_mode == "Batch Comparison" and st.session_state.get('run_analysis', Fa
                 with col3:
                     st.metric("Tokens", f"{metrics.get('token_count_stats', {}).get('mean', 0):.0f}")
 
-elif demo_mode == "Sample Dataset" and st.session_state.get('run_analysis', False):
+elif demo_mode == "Sample Dataset" and (st.session_state.get('run_analysis', False) or st.session_state.get('dataset_results') is not None):
     
-    st.subheader("📊 Sample Dataset Analysis")
+    # Header with clear button
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        st.subheader("📊 Sample Dataset Analysis")
+    with col2:
+        if st.session_state.get('run_analysis', False) or st.session_state.get('dataset_results') is not None:
+            if st.button("🗑️ Clear Results", use_container_width=True):
+                st.session_state.run_analysis = False
+                st.session_state.dataset_results = None
+                st.session_state.dataset_config = None
+                st.rerun()
     
-    # Generate sample dataset
-    sample_prompts = [
-        "Explain photosynthesis to a 5-year-old",
-        "What are the symptoms of diabetes?",
-        "How do neural networks learn?",
-        "Describe the water cycle",
-        "What causes climate change?",
-        "How does the immune system work?",
-        "Explain quantum computing",
-        "What is machine learning?",
-        "How do vaccines work?",
-        "Describe DNA structure"
-    ]
+    # Check if we already have dataset results for this configuration
+    current_config = f"dataset_{dataset_size}_{analysis_focus}"
     
-    # Generate sample responses (mock data for demo)
-    sample_responses = [
-        "Plants are like little food factories! They take in sunlight through their leaves, just like how you might catch sunshine with your hands. They also drink water through their roots, like using a straw. When the sunlight and water meet inside the plant, they make food (sugar) that helps the plant grow big and strong. And here's the cool part - while making their food, plants also make oxygen, which is the air we breathe! So plants help us by cleaning our air while they make their lunch.",
+    if ('dataset_results' not in st.session_state or 
+        st.session_state.get('dataset_config') != current_config):
         
-        "Diabetes symptoms include increased thirst and frequent urination, as the body tries to eliminate excess glucose. Patients often experience unexplained weight loss despite increased appetite, fatigue due to cells not getting enough glucose for energy, blurred vision from high blood sugar affecting the lens, slow-healing wounds due to impaired circulation, and tingling in hands or feet from nerve damage. Type 1 diabetes symptoms typically develop rapidly, while Type 2 symptoms may develop gradually over years.",
+        # Generate sample dataset
+        sample_prompts = [
+            "Explain photosynthesis to a 5-year-old",
+            "What are the symptoms of diabetes?",
+            "How do neural networks learn?",
+            "Describe the water cycle",
+            "What causes climate change?",
+            "How does the immune system work?",
+            "Explain quantum computing",
+            "What is machine learning?",
+            "How do vaccines work?",
+            "Describe DNA structure"
+        ]
         
-        "Neural networks learn through a process called backpropagation. Initially, the network makes random predictions. When shown the correct answer, it calculates the error and works backward through the network, adjusting the weights of connections between neurons. This process repeats thousands of times with different examples. Gradually, the network learns to recognize patterns - like how repeated practice helps you recognize faces or learn to ride a bike. The key is having lots of examples and adjusting the internal connections based on mistakes.",
+        # Generate sample responses (mock data for demo)
+        sample_responses = [
+            "Plants are like little food factories! They take in sunlight through their leaves, just like how you might catch sunshine with your hands. They also drink water through their roots, like using a straw. When the sunlight and water meet inside the plant, they make food (sugar) that helps the plant grow big and strong. And here's the cool part - while making their food, plants also make oxygen, which is the air we breathe! So plants help us by cleaning our air while they make their lunch.",
+            
+            "Diabetes symptoms include increased thirst and frequent urination, as the body tries to eliminate excess glucose. Patients often experience unexplained weight loss despite increased appetite, fatigue due to cells not getting enough glucose for energy, blurred vision from high blood sugar affecting the lens, slow-healing wounds due to impaired circulation, and tingling in hands or feet from nerve damage. Type 1 diabetes symptoms typically develop rapidly, while Type 2 symptoms may develop gradually over years.",
+            
+            "Neural networks learn through a process called backpropagation. Initially, the network makes random predictions. When shown the correct answer, it calculates the error and works backward through the network, adjusting the weights of connections between neurons. This process repeats thousands of times with different examples. Gradually, the network learns to recognize patterns - like how repeated practice helps you recognize faces or learn to ride a bike. The key is having lots of examples and adjusting the internal connections based on mistakes.",
+            
+            "The water cycle is Earth's continuous recycling system. Solar energy evaporates water from oceans, lakes, and rivers, turning it into invisible water vapor that rises into the atmosphere. As this warm, moist air cools at higher altitudes, it condenses around tiny particles to form clouds. When water droplets in clouds become too heavy, they fall as precipitation - rain, snow, or hail. This water flows back to water bodies through rivers and streams, or soaks into the ground to become groundwater, completing the cycle.",
+            
+            "Climate change is primarily caused by increased greenhouse gas concentrations in the atmosphere, mainly carbon dioxide from burning fossil fuels like coal, oil, and natural gas. These gases trap heat from the sun, creating a 'greenhouse effect.' Other contributors include deforestation (reducing CO2 absorption), methane from agriculture and landfills, and industrial processes. Human activities have increased atmospheric CO2 by over 40% since pre-industrial times, leading to global temperature rise, changing weather patterns, and environmental impacts.",
+            
+            "The immune system is your body's defense network with multiple layers. The first line includes physical barriers like skin and mucous membranes. If pathogens breach these, white blood cells respond. Innate immunity provides immediate, general responses through cells like neutrophils and macrophages that engulf invaders. Adaptive immunity creates specific responses: B cells produce antibodies that target specific pathogens, while T cells coordinate responses and kill infected cells. Memory cells remember past infections, enabling faster responses to repeat encounters.",
+            
+            "Quantum computing harnesses quantum mechanical phenomena like superposition and entanglement. Unlike classical bits that are either 0 or 1, quantum bits (qubits) can exist in superposition - simultaneously 0 and 1 until measured. This allows quantum computers to process multiple possibilities simultaneously. Entanglement links qubits so measuring one instantly affects others, regardless of distance. These properties enable quantum computers to solve certain problems exponentially faster than classical computers, particularly in cryptography, optimization, and simulation of quantum systems.",
+            
+            "Machine learning is a subset of artificial intelligence where computers learn patterns from data without being explicitly programmed for each task. The process involves feeding algorithms large amounts of data, allowing them to identify patterns and relationships. There are three main types: supervised learning (learning from labeled examples), unsupervised learning (finding hidden patterns in unlabeled data), and reinforcement learning (learning through trial and error with rewards). The algorithm adjusts its internal parameters based on the data to make accurate predictions on new, unseen information.",
+            
+            "Vaccines work by training your immune system to recognize and fight specific diseases without causing the actual illness. They contain weakened, killed, or parts of disease-causing organisms (antigens). When introduced into your body, these antigens trigger your immune system to produce antibodies and activate immune cells. Importantly, your immune system creates memory cells that remember the pathogen. If you're later exposed to the actual disease, these memory cells quickly recognize the threat and mount a rapid, effective immune response, preventing or reducing illness severity.",
+            
+            "DNA (deoxyribonucleic acid) has a double helix structure, like a twisted ladder. The 'rungs' of this ladder are made of four chemical bases: adenine (A), thymine (T), guanine (G), and cytosine (C). These bases pair specifically - A with T, and G with C - held together by hydrogen bonds. The 'sides' of the ladder consist of alternating sugar (deoxyribose) and phosphate groups, forming the backbone. This structure allows DNA to store genetic information in the sequence of bases and enables replication by unzipping the double helix and creating complementary strands."
+        ]
         
-        "The water cycle is Earth's continuous recycling system. Solar energy evaporates water from oceans, lakes, and rivers, turning it into invisible water vapor that rises into the atmosphere. As this warm, moist air cools at higher altitudes, it condenses around tiny particles to form clouds. When water droplets in clouds become too heavy, they fall as precipitation - rain, snow, or hail. This water flows back to water bodies through rivers and streams, or soaks into the ground to become groundwater, completing the cycle.",
-        
-        "Climate change is primarily caused by increased greenhouse gas concentrations in the atmosphere, mainly carbon dioxide from burning fossil fuels like coal, oil, and natural gas. These gases trap heat from the sun, creating a 'greenhouse effect.' Other contributors include deforestation (reducing CO2 absorption), methane from agriculture and landfills, and industrial processes. Human activities have increased atmospheric CO2 by over 40% since pre-industrial times, leading to global temperature rise, changing weather patterns, and environmental impacts.",
-        
-        "The immune system is your body's defense network with multiple layers. The first line includes physical barriers like skin and mucous membranes. If pathogens breach these, white blood cells respond. Innate immunity provides immediate, general responses through cells like neutrophils and macrophages that engulf invaders. Adaptive immunity creates specific responses: B cells produce antibodies that target specific pathogens, while T cells coordinate responses and kill infected cells. Memory cells remember past infections, enabling faster responses to repeat encounters.",
-        
-        "Quantum computing harnesses quantum mechanical phenomena like superposition and entanglement. Unlike classical bits that are either 0 or 1, quantum bits (qubits) can exist in superposition - simultaneously 0 and 1 until measured. This allows quantum computers to process multiple possibilities simultaneously. Entanglement links qubits so measuring one instantly affects others, regardless of distance. These properties enable quantum computers to solve certain problems exponentially faster than classical computers, particularly in cryptography, optimization, and simulation of quantum systems.",
-        
-        "Machine learning is a subset of artificial intelligence where computers learn patterns from data without being explicitly programmed for each task. The process involves feeding algorithms large amounts of data, allowing them to identify patterns and relationships. There are three main types: supervised learning (learning from labeled examples), unsupervised learning (finding hidden patterns in unlabeled data), and reinforcement learning (learning through trial and error with rewards). The algorithm adjusts its internal parameters based on the data to make accurate predictions on new, unseen information.",
-        
-        "Vaccines work by training your immune system to recognize and fight specific diseases without causing the actual illness. They contain weakened, killed, or parts of disease-causing organisms (antigens). When introduced into your body, these antigens trigger your immune system to produce antibodies and activate immune cells. Importantly, your immune system creates memory cells that remember the pathogen. If you're later exposed to the actual disease, these memory cells quickly recognize the threat and mount a rapid, effective immune response, preventing or reducing illness severity.",
-        
-        "DNA (deoxyribonucleic acid) has a double helix structure, like a twisted ladder. The 'rungs' of this ladder are made of four chemical bases: adenine (A), thymine (T), guanine (G), and cytosine (C). These bases pair specifically - A with T, and G with C - held together by hydrogen bonds. The 'sides' of the ladder consist of alternating sugar (deoxyribose) and phosphate groups, forming the backbone. This structure allows DNA to store genetic information in the sequence of bases and enables replication by unzipping the double helix and creating complementary strands."
-    ]
+        # Get instances
+        observer = get_observer()
+        evaluator = get_evaluator()
     
-    # Get instances
-    observer = get_observer()
-    evaluator = get_evaluator()
+        # Process sample dataset
+        dataset_results = []
+        
+        progress_bar = st.progress(0)
+        status_text = st.empty()
+        
+        for i, (prompt, response) in enumerate(zip(sample_prompts[:dataset_size], sample_responses[:dataset_size])):
+            status_text.text(f'Processing sample {i+1}/{min(dataset_size, len(sample_prompts))}...')
+            
+            # Record interaction
+            session_id = f"dataset_sample_{i+1}"
+            observer.record_interaction(
+                session_id=session_id,
+                step=1,
+                input_str=prompt,
+                output_str=response,
+                action="dataset_query"
+            )
+            
+            # Get metrics
+            interactions = observer.get_session_data(session_id)
+            metrics = observer.calculate_metrics(interactions)
+            
+            # Evaluate
+            observed_data = {'interactions': interactions, 'metrics': metrics, 'patterns': {}}
+            capabilities = evaluator.evaluate_capabilities(observed_data)
+            
+            dataset_results.append({
+                'Sample': i+1,
+                'Prompt': prompt,
+                'Response': response,
+                'Entropy': metrics.get('response_entropy', 0),
+                'Length': metrics.get('response_length_stats', {}).get('mean', 0),
+                'Task Completion': capabilities.get('task_completion', {}).get('score', 0),
+                'Quality Assessment': capabilities.get('task_completion', {}).get('assessment', 'unknown')
+            })
+            
+            progress_bar.progress((i + 1) / min(dataset_size, len(sample_prompts)))
+        
+        status_text.text('Analysis complete!')
+        
+        # Store results in session state
+        st.session_state.dataset_results = dataset_results
+        st.session_state.dataset_config = current_config
+        
+        # Clear progress indicators
+        progress_bar.empty()
+        status_text.empty()
     
-    # Process sample dataset
-    dataset_results = []
-    
-    progress_bar = st.progress(0)
-    status_text = st.empty()
-    
-    for i, (prompt, response) in enumerate(zip(sample_prompts[:dataset_size], sample_responses[:dataset_size])):
-        status_text.text(f'Processing sample {i+1}/{min(dataset_size, len(sample_prompts))}...')
-        
-        # Record interaction
-        session_id = f"dataset_sample_{i+1}"
-        observer.record_interaction(
-            session_id=session_id,
-            step=1,
-            input_str=prompt,
-            output_str=response,
-            action="dataset_query"
-        )
-        
-        # Get metrics
-        interactions = observer.get_session_data(session_id)
-        metrics = observer.calculate_metrics(interactions)
-        
-        # Evaluate
-        observed_data = {'interactions': interactions, 'metrics': metrics, 'patterns': {}}
-        capabilities = evaluator.evaluate_capabilities(observed_data)
-        
-        dataset_results.append({
-            'Sample': i+1,
-            'Prompt': prompt,
-            'Response': response,
-            'Entropy': metrics.get('response_entropy', 0),
-            'Length': metrics.get('response_length_stats', {}).get('mean', 0),
-            'Task Completion': capabilities.get('task_completion', {}).get('score', 0),
-            'Quality Assessment': capabilities.get('task_completion', {}).get('assessment', 'unknown')
-        })
-        
-        progress_bar.progress((i + 1) / min(dataset_size, len(sample_prompts)))
-    
-    status_text.text('Analysis complete!')
+    else:
+        # Use existing results from session state
+        dataset_results = st.session_state.dataset_results
     
     # Display dataset analysis results
     dataset_df = pd.DataFrame(dataset_results)
     
-    dataset_tab1, dataset_tab2, dataset_tab3 = st.tabs(["📈 Dataset Overview", "🔍 Distribution Analysis", "📋 Sample Details"])
+    dataset_tab1, dataset_tab2, dataset_tab3 = st.tabs(["📋 Sample Details", "📈 Dataset Overview", "🔍 Distribution Analysis"])
     
     with dataset_tab1:
+        st.subheader("Sample Details")
+        
+        # Display detailed results
+        st.dataframe(
+            dataset_df[['Sample', 'Prompt', 'Entropy', 'Length', 'Task Completion', 'Quality Assessment']],
+            use_container_width=True
+        )
+        
+        # Individual sample analysis
+        selected_sample = st.selectbox("Select Sample for Detailed View", dataset_df['Sample'].tolist(), key="sample_selector")
+        
+        if selected_sample:
+            sample_data = dataset_df[dataset_df['Sample'] == selected_sample].iloc[0]
+            
+            st.subheader(f"Sample {selected_sample} Analysis")
+            
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.markdown("**Prompt:**")
+                st.info(sample_data['Prompt'])
+                
+                st.markdown("**Metrics:**")
+                st.write(f"• Entropy: {sample_data['Entropy']:.3f}")
+                st.write(f"• Length: {sample_data['Length']:.0f} characters")
+                st.write(f"• Task Completion: {sample_data['Task Completion']:.3f}")
+                st.write(f"• Quality: {sample_data['Quality Assessment']}")
+            
+            with col2:
+                st.markdown("**Response:**")
+                st.write(sample_data['Response'])
+    
+    with dataset_tab2:
         st.subheader("Dataset Analysis Overview")
         
         # Summary statistics
@@ -880,7 +966,7 @@ elif demo_mode == "Sample Dataset" and st.session_state.get('run_analysis', Fals
         )
         st.plotly_chart(fig_quality, use_container_width=True)
     
-    with dataset_tab2:
+    with dataset_tab3:
         st.subheader("Distribution Analysis")
         
         # Entropy distribution
@@ -916,38 +1002,7 @@ elif demo_mode == "Sample Dataset" and st.session_state.get('run_analysis', Fals
         )
         st.plotly_chart(fig_corr, use_container_width=True)
     
-    with dataset_tab3:
-        st.subheader("Sample Details")
-        
-        # Display detailed results
-        st.dataframe(
-            dataset_df[['Sample', 'Prompt', 'Entropy', 'Length', 'Task Completion', 'Quality Assessment']],
-            use_container_width=True
-        )
-        
-        # Individual sample analysis
-        selected_sample = st.selectbox("Select Sample for Detailed View", dataset_df['Sample'].tolist())
-        
-        if selected_sample:
-            sample_data = dataset_df[dataset_df['Sample'] == selected_sample].iloc[0]
-            
-            st.subheader(f"Sample {selected_sample} Analysis")
-            
-            col1, col2 = st.columns(2)
-            
-            with col1:
-                st.markdown("**Prompt:**")
-                st.info(sample_data['Prompt'])
-                
-                st.markdown("**Metrics:**")
-                st.write(f"• Entropy: {sample_data['Entropy']:.3f}")
-                st.write(f"• Length: {sample_data['Length']:.0f} characters")
-                st.write(f"• Task Completion: {sample_data['Task Completion']:.3f}")
-                st.write(f"• Quality: {sample_data['Quality Assessment']}")
-            
-            with col2:
-                st.markdown("**Response:**")
-                st.write(sample_data['Response'])
+
 
 # Footer
 st.divider()
