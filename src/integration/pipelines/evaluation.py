@@ -1,11 +1,7 @@
 """
 Evaluation Pipeline - Orchestrates observation and evaluation workflow.
 
-<<<<<<< HEAD
-This is the main integration point that demonstrates the clean separation
-=======
 This is the main integration point that demonstrates the elmstash arch
->>>>>>> 93bf23e (merge1)
 between observation (what happened) and evaluation (how good was it).
 """
 
@@ -24,15 +20,9 @@ class EvaluationPipeline:
     """
     Orchestrates observation and evaluation workflow.
     
-<<<<<<< HEAD
-    This pipeline demonstrates the clean separation:
-    1. Observer: Records and measures what happened (objective)
-    2. Evaluator: Makes judgments about how good it was (subjective)
-=======
     This pipeline demonstrates the elmstash architecture:
     1. Observer: Records and measures what happened
     2. Evaluator: Makes judgments about how good it was
->>>>>>> 93bf23e (merge1)
     3. Integration: Combines insights into actionable reports
     """
     
