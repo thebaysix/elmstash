@@ -3,9 +3,9 @@
 ## ✅ What We've Built
 
 ### 🏗️ Clean Separation Architecture
-- **🟢 Observer**: Objective measurements (entropy, lengths, patterns)
-- **🟠 Evaluator**: Subjective assessments (quality, safety, task completion)  
-- **🔴 Integration**: Combined insights and comprehensive reports
+- **Observer**: Diagnostic measurements (entropy, lengths, patterns)
+- **Evaluator**: Quality assessments (quality, safety, task completion)  
+- **Insights**: Comprehensive reports
 
 ### 🎨 Interactive Demo UI
 - **Streamlit dashboard** with multiple demo modes
@@ -62,7 +62,7 @@
 ### Core Demo (5-8 minutes)
 1. **Single Analysis**: 
    - Use medical example to show real-world relevance
-   - Walk through all three tabs (Observer → Evaluator → Integration)
+   - Walk through all three tabs (Observer → Evaluator → Insights)
    - Highlight how objective measurements inform subjective assessments
 
 2. **Batch Comparison**:
@@ -171,7 +171,7 @@ demo_ui.py              # Main Streamlit application
 
 ### Architecture Implemented
 - ✅ Complete clean separation architecture
-- ✅ All three layers (Observer, Evaluator, Integration)
+- ✅ All three layers (Observer, Evaluator, Insights)
 - ✅ Working database integration
 - ✅ Comprehensive test coverage
 
