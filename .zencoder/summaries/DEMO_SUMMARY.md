@@ -3,9 +3,9 @@
 ## ✅ What We've Built
 
 ### 🏗️ Clean Separation Architecture
-- **👁️ Observer**: Diagnostic measurements (entropy, lengths, patterns)
-- **⚖️ Evaluator**: Quality assessments (quality, safety, task completion)  
-- **🔴 Integration**: Comprehensive reports
+- **Observer**: Diagnostic measurements (entropy, lengths, patterns)
+- **Evaluator**: Quality assessments (quality, safety, task completion)  
+- **Integration**: Comprehensive reports
 
 ### 🎨 Interactive Demo UI
 - **Streamlit dashboard** with multiple demo modes

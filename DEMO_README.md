@@ -39,9 +39,9 @@ pip install streamlit plotly pandas
 - **Live analysis** of individual input/output pairs
 - **Real-time metrics** calculation and display
 - **Three-layer breakdown**:
-  - 🟢 **Observer**: Objective measurements (entropy, length, patterns)
-  - 🟠 **Evaluator**: Subjective assessments (quality, safety, task completion)
-  - 🔴 **Integration**: Combined insights and recommendations
+  - 👁️ **Observer**: Objective measurements (entropy, length, patterns)
+  - ⚖️ **Evaluator**: Subjective assessments (quality, safety, task completion)
+  - 💡 **Insights**: Comprehensive Reports
 
 ### 🔄 Batch Comparison Mode
 - **Side-by-side model comparison** using the same prompt
