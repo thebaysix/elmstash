@@ -815,7 +815,27 @@ elif demo_mode == "Sample Dataset" and (st.session_state.get('run_analysis', Fal
             "Explain quantum computing",
             "What is machine learning?",
             "How do vaccines work?",
-            "Describe DNA structure"
+            "Describe DNA structure",
+            "What is the difference between a comet and an asteroid?",
+            "Explain the French Revolution in detail",
+            "How do antibiotics work against bacteria?",
+            "Describe how a bill becomes a law in the United States",
+            "What is blockchain technology?",
+            "Why is biodiversity important?",
+            "Explain the process of mitosis",
+            "What are black holes and how do they form?",
+            "How does the stock market work?",
+            "What is the role of mitochondria in cells?",
+            "Why did the Roman Empire fall?",
+            "What causes earthquakes?",
+            "How does photosynthesis differ from cellular respiration?",
+            "What is artificial general intelligence?",
+            "Explain supply and demand in economics",
+            "What are the major types of clouds?",
+            "How does the circulatory system function?",
+            "Describe the philosophy of existentialism",
+            "What is the greenhouse effect?",
+            "How do humans acquire language?"
         ]
         
         # Generate sample responses (mock data for demo)
@@ -839,6 +859,46 @@ elif demo_mode == "Sample Dataset" and (st.session_state.get('run_analysis', Fal
             "Vaccines work by training your immune system to recognize and fight specific diseases without causing the actual illness. They contain weakened, killed, or parts of disease-causing organisms (antigens). When introduced into your body, these antigens trigger your immune system to produce antibodies and activate immune cells. Importantly, your immune system creates memory cells that remember the pathogen. If you're later exposed to the actual disease, these memory cells quickly recognize the threat and mount a rapid, effective immune response, preventing or reducing illness severity.",
             
             "DNA (deoxyribonucleic acid) has a double helix structure, like a twisted ladder. The 'rungs' of this ladder are made of four chemical bases: adenine (A), thymine (T), guanine (G), and cytosine (C). These bases pair specifically - A with T, and G with C - held together by hydrogen bonds. The 'sides' of the ladder consist of alternating sugar (deoxyribose) and phosphate groups, forming the backbone. This structure allows DNA to store genetic information in the sequence of bases and enables replication by unzipping the double helix and creating complementary strands."
+ 
+            "A comet is a small icy body that, when it comes close to the Sun, heats up and releases gas and dust, forming a glowing coma and sometimes a tail. Asteroids, on the other hand, are rocky or metallic objects that orbit the Sun, mostly in the asteroid belt. They generally lack the ice and tail that comets have.",
+
+            "The French Revolution (1789–1799) was a watershed moment in world history. Rooted in financial crises, class tensions, and Enlightenment ideals, it began with widespread discontent toward the monarchy of Louis XVI. The Estates-General was convened in 1789, leading to the formation of the National Assembly, which challenged royal authority. The storming of the Bastille became a symbol of resistance. Over the next decade, France oscillated between visions of liberty and episodes of intense violence, including the Reign of Terror under Robespierre. Reforms such as the Declaration of the Rights of Man and of the Citizen sought to enshrine principles of equality, freedom, and secular government. Yet internal divisions, foreign wars, and radical factions created instability. The Revolution ultimately dismantled feudal privileges, transformed European politics, and paved the way for Napoleon’s rise. Its legacy lies both in its inspiring rhetoric of human rights and in its cautionary tales of political extremism.",
+
+            "Antibiotics work by targeting specific features of bacteria that human cells lack. For instance, some disrupt bacterial cell walls, others interfere with protein synthesis, and some block DNA replication. By damaging these vital processes, antibiotics kill or inhibit bacterial growth without harming human cells. However, misuse can lead to antibiotic resistance.",
+
+            "In the U.S., a bill starts in either the House or Senate. It’s introduced, debated in committees, and revised. If it passes one chamber, it goes to the other. Both chambers must approve the final version. The President can sign it into law or veto it, though Congress may override a veto with a two-thirds majority.",
+
+            "Blockchain is a decentralized digital ledger where transactions are recorded across many computers. Each block contains data, a timestamp, and a cryptographic link to the previous block, making it nearly impossible to alter past records. It underlies cryptocurrencies but also has applications in supply chains, voting, and secure data sharing.",
+
+            "Biodiversity ensures ecosystems remain stable and resilient. Diverse species contribute to pollination, soil health, climate regulation, and food security. Loss of biodiversity increases vulnerability to pests, diseases, and climate shifts. Protecting biodiversity safeguards both natural ecosystems and human well-being.",
+
+            "Mitosis is the process by which a eukaryotic cell divides into two identical daughter cells. It involves several stages: prophase (chromosomes condense), metaphase (line up at the cell’s center), anaphase (sister chromatids separate), and telophase (nuclear membranes reform). Finally, cytokinesis splits the cytoplasm, completing the cycle.",
+
+            "Black holes are regions of spacetime where gravity is so strong that not even light can escape. They form when massive stars exhaust their fuel and collapse under their own gravity. The boundary beyond which nothing can escape is called the event horizon. Inside lies the singularity, a point of infinite density where our current understanding of physics breaks down. Black holes can grow by consuming surrounding matter or merging with other black holes. Observational evidence comes from detecting their gravitational influence on nearby stars and from signals like gravitational waves.",
+
+            "The stock market is a system where shares of publicly traded companies are bought and sold. Prices are determined by supply and demand, reflecting expectations about company performance and broader economic conditions. Investors can earn returns through dividends or by selling shares at higher prices. While it can build wealth, it also involves risks.",
+
+            "Mitochondria are often called the 'powerhouses of the cell.' They generate ATP, the energy currency of the cell, through cellular respiration. They convert glucose and oxygen into ATP, releasing carbon dioxide and water as byproducts. Beyond energy, mitochondria also play roles in signaling, cell differentiation, and apoptosis (programmed cell death).",
+
+            "The fall of the Roman Empire was a gradual process spanning centuries, influenced by a combination of internal weaknesses and external pressures. Economically, Rome faced inflation, heavy taxation, and reliance on slave labor, which undermined productivity. Politically, frequent power struggles and corruption weakened governance. Militarily, the empire overextended its borders and relied increasingly on mercenary troops whose loyalty was questionable. Meanwhile, invasions by Germanic tribes, the Huns, and other groups exposed vulnerabilities. The sack of Rome in 410 CE by the Visigoths was a symbolic blow, though the Eastern Empire (Byzantine) survived for another thousand years. Culturally, shifts in identity and the spread of Christianity transformed the empire’s values. The fall is less a single event than a long transformation, marking the transition from classical antiquity to the medieval period in Europe.",
+
+            "Earthquakes occur when stress builds up along faults in the Earth's crust until it is suddenly released, causing the ground to shake. This release of energy travels in waves—P-waves and S-waves—that we detect with seismographs. They are most common along tectonic plate boundaries.",
+
+            "Photosynthesis converts sunlight into chemical energy, producing glucose and oxygen, while cellular respiration breaks down glucose in the presence of oxygen to release energy (ATP). Essentially, photosynthesis stores energy in glucose, and respiration extracts it for use. The two processes are complementary.",
+
+            "Artificial general intelligence (AGI) refers to AI systems with the ability to understand, learn, and apply knowledge across a wide range of tasks, much like a human. Unlike narrow AI, which is specialized, AGI would possess general reasoning, adaptability, and problem-solving. It remains a theoretical concept, with ethical and technical challenges ahead.",
+
+            "Supply and demand is a fundamental concept in economics. When demand for a good rises but supply remains constant, prices increase. Conversely, if supply rises faster than demand, prices fall. The equilibrium price is where supply equals demand. This dynamic shapes markets and influences resource allocation.",
+
+            "There are four main cloud types: cirrus (wispy, high-altitude), cumulus (puffy, cotton-like), stratus (layered, covering the sky), and nimbus (rain-bearing). These categories combine into hybrids, such as cumulonimbus, which are towering thunderstorm clouds.",
+
+            "The circulatory system transports blood, nutrients, oxygen, and waste products throughout the body. The heart pumps oxygenated blood through arteries to tissues, and deoxygenated blood returns via veins. Capillaries enable exchange of gases and nutrients. This continuous flow sustains life by nourishing cells and removing waste.",
+
+            "Existentialism is a philosophical movement that emphasizes individual freedom, choice, and responsibility in a universe that may lack inherent meaning. Thinkers like Søren Kierkegaard, Friedrich Nietzsche, Jean-Paul Sartre, and Simone de Beauvoir explored themes of authenticity, absurdity, and the human struggle to create meaning. Sartre, for example, argued that 'existence precedes essence,' meaning we are not born with a predetermined purpose but must define ourselves through our actions. Existentialism often grapples with anxiety, despair, and the confrontation with mortality, yet it also stresses the potential for personal empowerment in shaping one’s life. Its influence extends beyond philosophy into literature, art, and psychology.",
+
+            "The greenhouse effect occurs when certain gases in Earth's atmosphere, such as carbon dioxide and methane, trap heat from the Sun. This keeps Earth warm enough for life. Human activities, however, have intensified this effect, leading to global warming and climate change.",
+
+            "Humans acquire language through a mix of innate abilities and social interaction. Babies are born with the capacity to detect patterns in speech. Through exposure to caregivers, they gradually acquire vocabulary and grammar. Critical periods in early childhood make language learning especially efficient. Social context and reinforcement accelerate the process."
         ]
         
         # Get instances
